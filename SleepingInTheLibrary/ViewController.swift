@@ -77,7 +77,7 @@ class ViewController: UIViewController {
             }
 
             /* GUARD: Did we get a successful 2XX response? */
-            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 2200 && statusCode <= 299 else {
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
                 displayError("Your request returned a status code other than 2xx!")
                 return
             }
@@ -132,36 +132,6 @@ class ViewController: UIViewController {
                 displayError("Image does not exist at \(String(describing: imageURL))")
             }
             
-            // no error, woohoo!
-//            if error == nil {
-//                // there was data returned
-//                if let data = data {
-//
-//                    let parsedResult: [String:AnyObject]!
-//                    do {
-//                        parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:AnyObject]
-//                    } catch {
-//                        displayError("Could not parse the data as JSON: '\(data)'")
-//                        return
-//                    }
-//                    if let photosDictionary = parsedResult[Constants.FlickrResponseKeys.Photos] as? [String:AnyObject], let photoArray = photosDictionary[Constants.FlickrResponseKeys.Photo] as? [[String:AnyObject]] {
-//                        let randomPhotoIndex = Int(arc4random_uniform(UInt32(photoArray.count)))
-//                        let photoDictionary = photoArray[randomPhotoIndex] as [String:AnyObject]
-//
-//                        if let imageUrlString = photoDictionary[Constants.FlickrResponseKeys.MediumURL] as? String, let photoTitle =  photoDictionary[Constants.FlickrResponseKeys.Title] as? String {
-//
-//                            let imageURL = URL(string: imageUrlString)
-//                            if let imageData = try? Data(contentsOf: imageURL!) {
-//                                performUIUpdatesOnMain {
-//                                    self.photoImageView.image = UIImage(data: imageData)
-//                                    self.photoTitleLabel.text = photoTitle
-//                                    self.setUIEnabled(true)
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
         }
         // start the task!
         task.resume()
